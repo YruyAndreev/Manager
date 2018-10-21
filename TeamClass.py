@@ -95,6 +95,8 @@ class Team:
     _Points=0
     _Coach=0
     _Tactic=0
+    _Tactic1=0
+    _Tactic2=0
     _AllPlayers=[]
     _StartPlayers=[]
     _ReservePlayers=[]
@@ -106,13 +108,20 @@ class Team:
     LoseGames=0
     DrawGames=0
     Games=0
-    def __init__(self,Name,Teg,Color,Money,Coach,Tactic,TeamPlayers):
+    GoalsScore=0
+    GoalsLose=0
+    def __init__(self,Name,Teg,Color,Money,Coach,TeamPlayers):
         self.Name=Name
         self.Teg=Teg
         self.Color=Color
         self.Money=Money
         self.Coach=Coach
-        self.Tactic=Tactic
+        self.Tactic1 = Coach.AttackTactic
+        self.Tactic2 = Coach.DefendTactic
+        if self.Coach.Style=='Attack':
+            self.Tactic=self.Tactic1
+        else:
+            self.Tactic=self.Tactic2
         self.AllPlayers=TeamPlayers
         self.StartPlayers=FillStartSquad(self.AllPlayers,self.Tactic)
         self.ReservePlayers=FillReserve(self.AllPlayers,self.StartPlayers)
